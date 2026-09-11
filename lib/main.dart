@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'telas/login_page.dart';
 
 void main() {
   runApp(const MeuApp());
@@ -11,53 +12,14 @@ class MeuApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const CatalogoProdutos(),
-    );
-  }
-}
-
-class CatalogoProdutos extends StatelessWidget {
-  const CatalogoProdutos({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Catálogo'),
+      title: 'Sistema de Cadastro',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+        ),
+        useMaterial3: true,
       ),
-      body: ListView(
-        children: const [
-          ListTile(
-            leading: Icon(Icons.shopping_bag),
-            title: Text('GTA VI'),
-            subtitle: Text('R\$ 799,00'),
-          ),
-
-          Divider(),
-
-          ListTile(
-            leading: Icon(Icons.shopping_bag),
-            title: Text('Iphone 18'),
-            subtitle: Text('R\$ 29999,90'),
-          ),
-
-          Divider(),
-
-          ListTile(
-            leading: Icon(Icons.shopping_bag),
-            title: Text('Boné'),
-            subtitle: Text('R\$ 59,90'),
-          ),
-
-          Divider(),
-
-          ListTile(
-            leading: Icon(Icons.shopping_bag),
-            title: Text('Mochila'),
-            subtitle: Text('R\$ 129,90'),
-          ),
-        ],
-      ),
+      home: const LoginPage(),
     );
   }
 }
