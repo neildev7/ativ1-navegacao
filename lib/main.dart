@@ -11,66 +11,47 @@ class MeuApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Perfil do Funcionário',
-      home: const PerfilFuncionario(),
+      home: const ListaFuncionarios(),
     );
   }
 }
 
-class PerfilFuncionario extends StatelessWidget {
-  const PerfilFuncionario({super.key});
+class ListaFuncionarios extends StatelessWidget {
+  const ListaFuncionarios({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perfil do Funcionário'),
-        centerTitle: true,
+        title: const Text('Funcionários'),
       ),
-
-      body: Center(
-        child: Card(
-          elevation: 5,
-          margin: const EdgeInsets.all(20),
-
-          child: Padding(
-            padding: const EdgeInsets.all(25),
-
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.asset(
-                    'assets/funcionario.jpg',
-                    width: 120,
-                    height: 120,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-
-                const SizedBox(height: 20),
-
-                const Text(
-                  'Otaldo Dona',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                const SizedBox(height: 10),
-
-                const Text(
-                  'Desenvolvedor de Sistemas',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-              ],
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: const [
+          Card(
+            child: ListTile(
+              leading: Icon(Icons.person),
+              title: Text('João Ligabo'),
+              subtitle: Text('Desenvolvedor'),
             ),
           ),
-        ),
+
+          Card(
+            child: ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Glória Maria'),
+              subtitle: Text('Designer'),
+            ),
+          ),
+
+          Card(
+            child: ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Andreza Quintas'),
+              subtitle: Text('Analista de Sistemas'),
+            ),
+          ),
+        ],
       ),
     );
   }
