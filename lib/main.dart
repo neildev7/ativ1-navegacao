@@ -11,45 +11,50 @@ class MeuApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const ListaFuncionarios(),
+      home: const CatalogoProdutos(),
     );
   }
 }
 
-class ListaFuncionarios extends StatelessWidget {
-  const ListaFuncionarios({super.key});
+class CatalogoProdutos extends StatelessWidget {
+  const CatalogoProdutos({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Funcionários'),
+        title: const Text('Catálogo'),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
         children: const [
-          Card(
-            child: ListTile(
-              leading: Icon(Icons.person),
-              title: Text('João Ligabo'),
-              subtitle: Text('Desenvolvedor'),
-            ),
+          ListTile(
+            leading: Icon(Icons.shopping_bag),
+            title: Text('GTA VI'),
+            subtitle: Text('R\$ 799,00'),
           ),
 
-          Card(
-            child: ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Glória Maria'),
-              subtitle: Text('Designer'),
-            ),
+          Divider(),
+
+          ListTile(
+            leading: Icon(Icons.shopping_bag),
+            title: Text('Iphone 18'),
+            subtitle: Text('R\$ 29999,90'),
           ),
 
-          Card(
-            child: ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Andreza Quintas'),
-              subtitle: Text('Analista de Sistemas'),
-            ),
+          Divider(),
+
+          ListTile(
+            leading: Icon(Icons.shopping_bag),
+            title: Text('Boné'),
+            subtitle: Text('R\$ 59,90'),
+          ),
+
+          Divider(),
+
+          ListTile(
+            leading: Icon(Icons.shopping_bag),
+            title: Text('Mochila'),
+            subtitle: Text('R\$ 129,90'),
           ),
         ],
       ),
