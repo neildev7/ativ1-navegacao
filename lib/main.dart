@@ -11,113 +11,61 @@ class MeuApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const CadastroCliente(),
+      title: 'Perfil do Funcionário',
+      home: const PerfilFuncionario(),
     );
   }
 }
 
-class CadastroCliente extends StatefulWidget {
-  const CadastroCliente({super.key});
-
-  @override
-  State<CadastroCliente> createState() => _CadastroClienteState();
-}
-
-class _CadastroClienteState extends State<CadastroCliente> {
-  final TextEditingController nomeController = TextEditingController();
-  final TextEditingController cidadeController = TextEditingController();
-
-  void abrirResumo() {
-    String nome = nomeController.text;
-    String cidade = cidadeController.text;
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ResumoCliente(
-          nome: nome,
-          cidade: cidade,
-        ),
-      ),
-    );
-  }
+class PerfilFuncionario extends StatelessWidget {
+  const PerfilFuncionario({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro de Cliente'),
+        title: const Text('Perfil do Funcionário'),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            TextField(
-              controller: nomeController,
-              decoration: const InputDecoration(
-                labelText: 'Nome',
-                border: OutlineInputBorder(),
-              ),
-            ),
 
-            const SizedBox(height: 20),
-
-            TextField(
-              controller: cidadeController,
-              decoration: const InputDecoration(
-                labelText: 'Cidade',
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            ElevatedButton(
-              onPressed: abrirResumo,
-              child: const Text('Cadastrar'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ResumoCliente extends StatelessWidget {
-  final String nome;
-  final String cidade;
-
-  const ResumoCliente({
-    super.key,
-    required this.nome,
-    required this.cidade,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Resumo'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
+      body: Center(
         child: Card(
+          elevation: 5,
+          margin: const EdgeInsets.all(20),
+
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(25),
+
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Nome: $nome',
-                  style: const TextStyle(fontSize: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.asset(
+                    'assets/funcionario.jpg',
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                const Text(
+                  'Otaldo Dona',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
 
                 const SizedBox(height: 10),
 
-                Text(
-                  'Cidade: $cidade',
-                  style: const TextStyle(fontSize: 20),
+                const Text(
+                  'Desenvolvedor de Sistemas',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ],
             ),
