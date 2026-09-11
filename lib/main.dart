@@ -11,65 +11,117 @@ class MeuApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Navegação',
-      home: const Tela1(),
+      home: const CadastroCliente(),
     );
   }
 }
 
-class Tela1 extends StatelessWidget {
-  const Tela1({super.key});
+class CadastroCliente extends StatefulWidget {
+  const CadastroCliente({super.key});
+
+  @override
+  State<CadastroCliente> createState() => _CadastroClienteState();
+}
+
+class _CadastroClienteState extends State<CadastroCliente> {
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController cidadeController = TextEditingController();
+
+  void abrirResumo() {
+    String nome = nomeController.text;
+    String cidade = cidadeController.text;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResumoCliente(
+          nome: nome,
+          cidade: cidade,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tela 1'),
+        title: const Text('Cadastro de Cliente'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Tela2(),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              controller: nomeController,
+              decoration: const InputDecoration(
+                labelText: 'Nome',
+                border: OutlineInputBorder(),
               ),
-            );
-          },
-          child: const Text('Abrir Tela 2'),
+            ),
+
+            const SizedBox(height: 20),
+
+            TextField(
+              controller: cidadeController,
+              decoration: const InputDecoration(
+                labelText: 'Cidade',
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: abrirResumo,
+              child: const Text('Cadastrar'),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class Tela2 extends StatelessWidget {
-  const Tela2({super.key});
+class ResumoCliente extends StatelessWidget {
+  final String nome;
+  final String cidade;
+
+  const ResumoCliente({
+    super.key,
+    required this.nome,
+    required this.cidade,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tela 2'),
+        title: const Text('Resumo'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Você entrou no sistema!',
-              style: TextStyle(fontSize: 22),
-            ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Nome: $nome',
+                  style: const TextStyle(fontSize: 20),
+                ),
 
-            const SizedBox(height: 20),
+                const SizedBox(height: 10),
 
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Voltar'),
+                Text(
+                  'Cidade: $cidade',
+                  style: const TextStyle(fontSize: 20),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
